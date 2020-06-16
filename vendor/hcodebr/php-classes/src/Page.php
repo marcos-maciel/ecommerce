@@ -10,12 +10,12 @@ class Page {
     private $options = [];
     private $defaults = ["data"=>[]];
 
-    public function __construct($opts = array()) {
+    public function __construct($opts = array(), $tpl_dir = "/views/") {
 
         $this->options = array_merge($this->defaults, $opts); //inicialmente pega o valor de $defaults, caso o usuario passe alguma coisa, grava na variavel $opts e sobreescreve $defaults
 
         $config = array(
-					"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"]."/views/",
+					"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"].$tpl_dir,
                     "cache_dir"     => $_SERVER["DOCUMENT_ROOT"]."/views-cache/",
                     "debug"         => false
 				   );
