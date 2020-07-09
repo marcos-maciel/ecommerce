@@ -52,6 +52,51 @@ $app->get('/admin/logout', function() {
 	exit;
 });
 
+$app->get('/admin/users', function() {
+
+	User::verifyLogin();
+
+	$user = User::listAllUsers();
+
+	$page = new \Hcode\PageAdmin();
+
+	$page->setTpl("users");
+
+});
+
+$app->get('/admin/users/create', function () {
+
+	User::verifyLogin();
+
+	$page = new \Hcode\PageAdmin();
+
+	$page->setTpl("users-create");
+});
+
+$app->get('/admin/users/:iduser', function ($idUser) {
+
+	User::verifyLogin();
+
+	$page = new \Hcode\PageAdmin();
+
+	$page->setTpl("users-update");
+});
+
+$app->post('/admin/users/create', function () {
+
+	User::verifyLogin();
+});
+
+$app->post('/admin/users/:iduser', function ($idUser) {
+
+	User::verifyLogin();
+});
+
+$app->delete('/admin/users/:iduser', function ($idUser) {
+
+	User::verifyLogin();
+});
+
 $app->run();
 
 ?>
